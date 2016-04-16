@@ -8,6 +8,8 @@ if (!slackToken) {
 }
 
 var controller = Botkit.slackbot()
+
+/*
 var bot = controller.spawn({
   token: slackToken
 })
@@ -16,7 +18,11 @@ bot.startRTM(function (err, bot, payload) {
   if (err) {
     throw new Error('Could not connect to Slack')
   }
-})
+})*/
+
+
+require('beepboop-botkit').start(controller);
+
 
 controller.on('bot_channel_join', function (bot, message) {
   bot.reply(message, "I'm here!")
