@@ -25,7 +25,13 @@ require('beepboop-botkit').start(controller);
 
 controller.on('bot_channel_join', function (bot, message) {
   bot.reply(message, "I'm here!")
-})
+});
+
+controller.configureSlackApp({
+  clientId: process.env.clientId,
+  clientSecret: process.env.clientSecret,
+  scopes: ['incoming-webhook']
+});
 
 controller.hears(['hello', 'hi'], ['direct_mention'], function (bot, message) {
   bot.reply(message, 'I send you a message.');
@@ -136,6 +142,6 @@ controller.setupWebserver(process.env.PORT,function(err,webserver) {
 
 
 // global fallback
-//controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, message) {
-//  bot.reply(message, 'Sorry <@' + message.user + '>, I don\'t understand. \n')
-//});
+controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, message) {
+  bot.reply(message, 'Sorry <@' + message.user + '>, I don\'t understand. \n')
+});

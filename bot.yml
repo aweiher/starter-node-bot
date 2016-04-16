@@ -2,16 +2,17 @@ name: slack-hack-hr
 description: A simple node.js starter bot for Beep Boop
 avatar: resources/avatar.png
 #background: resources/background.png
-#config:
-#  - name: OPTION
-#    friendly_name: Some Unnecessary Option
-#    info: This is an unnecessary option
-#    default: the default value
-#  - name: SECRET
-#    friendly_name: Shhhh
-#    info: This is an secret option
-#    type: secret
-#    default: not secret though
+config:
+  - name: clienId
+    friendly_name: Client Id
+    info: OAuth Client ID
+  - name: clientSecret
+    friendly_name: OAuth Secret
+    info: OAuth Client ID
+    type: secret
+
+
+
 #screenshots:
 #  - screenshot: resources/screenshot1.png
 #  - screenshot: resources/screenshot2.jpg
