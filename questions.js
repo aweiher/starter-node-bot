@@ -36,7 +36,29 @@ exports.init = function (bot, message) {
         }
       ]
     );
+
+    convo.on('end',function(convo) {
+
+      if (convo.status=='completed') {
+        // do something useful with the users responses
+        var res = convo.extractResponses();
+
+        // reference a specific response by key
+        // var value  = convo.extractResponse('key');
+
+        // ... do more stuff...
+
+        bot.reply(message, "completed - " + JSON.stringify(res));
+
+      } else {
+        // something happened that caused the conversation to stop prematurely
+
+        bot.reply(message, "status: " + convo.status);
+      }
+
+    });
   };
+
 
   var askSkills = function (response, convo) {
     convo.ask('Which of the following skills do you have? (*backend*, *frontend*, *api*)', [

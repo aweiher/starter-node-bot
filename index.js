@@ -28,8 +28,9 @@ controller.on('bot_channel_join', function (bot, message) {
 })
 
 controller.hears(['hello', 'hi'], ['direct_mention'], function (bot, message) {
-  console.log("MSG:", message);
-  bot.reply(message, 'Hello.')
+  bot.reply(message, 'Hello.');
+
+
 })
 
 controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
