@@ -29,13 +29,18 @@ controller.on('bot_channel_join', function (bot, message) {
 })
 
 controller.hears(['hello', 'hi'], ['direct_mention'], function (bot, message) {
+  console.log("MSG:", message);
   bot.reply(message, 'Hello.')
 })
 
 controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
-  bot.reply(message, 'Hello.')
-  bot.reply(message, 'It\'s nice to talk to you directly.')
-})
+
+  bot.startConversation(message, function(err, convo) {
+    convo.say('Hello.')
+    convo.say('It\'s nice to talk to you directly.')
+
+  });
+});
 
 controller.hears('.*', ['mention'], function (bot, message) {
   bot.reply(message, 'You really do care about me. :heart:')
@@ -71,4 +76,5 @@ controller.hears(['attachment'], ['direct_message', 'direct_mention'], function 
 
 controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, message) {
   bot.reply(message, 'Sorry <@' + message.user + '>, I don\'t understand. \n')
-})
+});
+
