@@ -27,6 +27,8 @@ controller.on('bot_channel_join', function (bot, message) {
   bot.reply(message, "I'm here!")
 });
 
+console.log('env:', process.env)
+
 controller.configureSlackApp({
   clientId: process.env.clientId,
   clientSecret: process.env.clientSecret,
