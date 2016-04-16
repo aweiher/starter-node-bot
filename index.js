@@ -81,12 +81,15 @@ controller.hears(['attachment'], ['direct_message', 'direct_mention'], function 
   })
 })
 
-controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, message) {
-  bot.reply(message, 'Sorry <@' + message.user + '>, I don\'t understand. \n')
-});
 
 // debug
 
 controller.hears(['debug_info'], ['direct_message'], function (bot, message) {
   bot.reply(message, "ENV: " + JSON.stringify(process.env))
+});
+
+
+// global fallback
+controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, message) {
+  bot.reply(message, 'Sorry <@' + message.user + '>, I don\'t understand. \n')
 });
