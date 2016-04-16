@@ -28,8 +28,8 @@ controller.on('bot_channel_join', function (bot, message) {
 });
 //
 //controller.configureSlackApp({
-//  clientId: process.env.clientId,
-//  clientSecret: process.env.clientSecret,
+//  clientId: bot.config.clientId,
+//  clientSecret: bot.config.clientSecret,
 //  scopes: ['incoming-webhook']
 //});
 
@@ -91,7 +91,7 @@ controller.hears(['attachment'], ['direct_message', 'direct_mention'], function 
 // debug
 
 controller.hears(['debug_info'], ['direct_message'], function (bot, message) {
-  bot.reply(message, "ENV: " + JSON.stringify(process.env))
+  bot.reply(message, "ENV: " + JSON.stringify(bot.config))
 });
 
 //
