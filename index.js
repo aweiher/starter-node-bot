@@ -40,6 +40,13 @@ controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
   bot.startConversation(message, questions.askStart);
 });
 
+controller.hears(['add'], ['direct_message'], function (bot, message) {
+  var questions = require('./questions.js').init(bot, message);
+
+  bot.startConversation(message, questions.addProject);
+});
+
+
 controller.hears('.*', ['mention'], function (bot, message) {
   bot.reply(message, 'I heard you like projects? :heart:')
 })

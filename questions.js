@@ -6,6 +6,30 @@ var projects = {
 
 exports.init = function (bot, message) {
 
+  var addProject = function(response, convo) {
+    convo.ask("Which category is the project?", function() {
+
+      convo.ask("What is the title of the project?", function() {
+        convo.next();
+      });
+
+      convo.next();
+    });
+
+    convo.on('end',function(convo) {
+
+      if (convo.status=='completed') {
+        var res = convo.extractResponses();
+
+        bot.reply(message, {
+          icon_emoji: ':memo:',
+          text: "add project: " + JSON.stringify(res)
+        });
+
+      }
+    });
+
+  };
 
   var askStart = function (response, convo) {
     convo.say('Hello <@' + message.user + '>!');
@@ -118,6 +142,7 @@ exports.init = function (bot, message) {
 
   return {
     askStart: askStart,
-    askSkills: askSkills
+    askSkills: askSkills,
+    addProject: addProject
   };
 };
