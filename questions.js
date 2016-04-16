@@ -1,14 +1,14 @@
 
 var askStart = function( response, convo) {
-    convo.ask('Are you interested in some amazing project opportunities?', /*[
+    convo.ask('Are you interested in some amazing project opportunities?', [
         {
             pattern: bot.utterances.yes,
             callback: function(response,convo) {
                 convo.say('Great!');
-                askSkills(response, convo);
+                //askSkills(response, convo);
                 convo.next();
             }
-        },
+        }/*,
         {
             pattern: bot.utterances.no,
             callback: function(response,convo) {
@@ -24,14 +24,8 @@ var askStart = function( response, convo) {
                 convo.repeat();
                 convo.next();
             }
-        }
-    ]*/
-
-        function(response, convo) {
-            convo.say("Awesome.");
-            convo.next();
-        }
-
+        }*/
+    ]
     );
 };
 
