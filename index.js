@@ -36,7 +36,7 @@ controller.hears(['hello', 'hi'], ['direct_mention'], function (bot, message) {
 
 controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
 
-  bot.startConversation(questions.askStart);
+  bot.startConversation(message, questions.askStart);
 });
 
 controller.hears('.*', ['mention'], function (bot, message) {
