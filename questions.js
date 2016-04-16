@@ -1,7 +1,14 @@
+var projects = {
+  backend: [],
+  frontend: [],
+  api: []
+};
+
 exports.init = function (bot) {
 
 
   var askStart = function (response, convo) {
+    convo.say('Hello <@' + message.user + '>!');
     convo.ask('Are you interested in some amazing project opportunities?', [
         {
           pattern: bot.utterances.yes,
@@ -34,21 +41,24 @@ exports.init = function (bot) {
   var askSkills = function (response, convo) {
     convo.ask('Which of the following skills do you have? (*backend*, *frontend*, *api*)', [
       {
-        pattern: 'backend',
+        pattern: 'frontend',
         callback: function (response, convo) {
           convo.say('Perfect!');
+          tellProjects("frontend");
           convo.next();
         }
       }, {
         pattern: 'backend',
         callback: function (response, convo) {
-          convo.say('Perfect!');
+          convo.say('Amazing!');
+          tellProjects("backend");
           convo.next();
         }
       }, {
-        pattern: 'backend',
+        pattern: 'api',
         callback: function (response, convo) {
-          convo.say('Perfect!');
+          convo.say('Awesome!');
+          tellProjects("api");
           convo.next();
         }
       }, {
@@ -60,6 +70,21 @@ exports.init = function (bot) {
         }
       }
     ]);
+  };
+
+  var tellProjects = function(response, convo) {
+
+
+    if(projects.length) {
+      convo.say('Lets see .. I have *' + projects.length + '* for you');
+      projects.forEach(function(project, index) {
+        var count = index + 1;
+        convo.say("#" + count + ': ' + project.title);
+      });
+    } else {
+      convo.say('Oh noes .. I have no projects for you!');
+    }
+
   };
 
 
