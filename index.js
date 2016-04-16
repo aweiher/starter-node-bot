@@ -23,8 +23,6 @@ bot.startRTM(function (err, bot, payload) {
 
 require('beepboop-botkit').start(controller);
 
-var questions = require('./questions.js');
-
 controller.on('bot_channel_join', function (bot, message) {
   bot.reply(message, "I'm here!")
 })
@@ -35,6 +33,8 @@ controller.hears(['hello', 'hi'], ['direct_mention'], function (bot, message) {
 })
 
 controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
+
+  var questions = require('./questions.js').init(bot);
 
   bot.startConversation(message, questions.askStart);
 });

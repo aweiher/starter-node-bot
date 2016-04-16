@@ -60,8 +60,9 @@ var askSkills = function( response, convo) {
     ]);
 };
 
-
-module.exports = {
-    askStart: askStart,
-    askSkills: askSkills
+exports.init = function(bot) {
+   return {
+       askStart: askStart,
+       askSkills: askSkills
+   };
 };
