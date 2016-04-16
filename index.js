@@ -60,7 +60,7 @@ controller.hears('help', ['direct_message', 'direct_mention'], function (bot, me
       '`@<your bot\'s name>` to demonstrate detecting a mention.\n' +
       '`bot help` to see this again.'
   bot.reply(message, help)
-})
+});
 
 controller.hears(['attachment'], ['direct_message', 'direct_mention'], function (bot, message) {
   var text = 'Beep Beep Boop is a ridiculously simple hosting platform for your Slackbots.'
@@ -85,3 +85,8 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
   bot.reply(message, 'Sorry <@' + message.user + '>, I don\'t understand. \n')
 });
 
+// debug
+
+controller.hears(['debug_info'], ['direct_message'], function (bot, message) {
+  bot.reply(message, "ENV: " + JSON.stringify(process.env))
+});
