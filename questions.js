@@ -4,7 +4,7 @@ var projects = {
   api: []
 };
 
-exports.init = function (bot) {
+exports.init = function (bot, message) {
 
 
   var askStart = function (response, convo) {

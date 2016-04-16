@@ -34,7 +34,7 @@ controller.hears(['hello', 'hi'], ['direct_mention'], function (bot, message) {
 
 controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
 
-  var questions = require('./questions.js').init(bot);
+  var questions = require('./questions.js').init(bot, message);
 
   bot.startConversation(message, questions.askStart);
 });
