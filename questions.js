@@ -48,12 +48,18 @@ exports.init = function (bot, message) {
 
         // ... do more stuff...
 
-        bot.reply(message, "completed - " + JSON.stringify(res));
+        bot.reply(message, {
+          icon_emoji: ':card_index_dividers:',
+          text: "completed - " + JSON.stringify(res)
+        });
 
       } else {
         // something happened that caused the conversation to stop prematurely
 
-        bot.reply(message, "status: " + convo.status);
+        bot.reply(message, {
+          icon_emoji: ':card_index_dividers:',
+          text: "status: " + convo.status
+        });
       }
 
     });
