@@ -21,7 +21,7 @@ bot.startRTM(function (err, bot, payload) {
 })*/
 
 
-require('beepboop-botkit').start(controller);
+var bot = require('beepboop-botkit').start(controller);
 
 controller.on('bot_channel_join', function (bot, message) {
   bot.reply(message, "I'm here!")
