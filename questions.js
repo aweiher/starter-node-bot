@@ -44,21 +44,21 @@ exports.init = function (bot, message) {
         pattern: 'frontend',
         callback: function (response, convo) {
           convo.say('Perfect!');
-          tellProjects("frontend");
+          tellProjects(response, convo, "frontend");
           convo.next();
         }
       }, {
         pattern: 'backend',
         callback: function (response, convo) {
           convo.say('Amazing!');
-          tellProjects("backend");
+          tellProjects(response, convo, "backend");
           convo.next();
         }
       }, {
         pattern: 'api',
         callback: function (response, convo) {
           convo.say('Awesome!');
-          tellProjects("api");
+          tellProjects(response, convo, "api");
           convo.next();
         }
       }, {
@@ -72,12 +72,12 @@ exports.init = function (bot, message) {
     ]);
   };
 
-  var tellProjects = function(response, convo) {
+  var tellProjects = function(response, convo, projectCategory) {
+    var projectsArr = projects[projectCategory];
 
-
-    if(projects.length) {
-      convo.say('Lets see .. I have *' + projects.length + '* for you');
-      projects.forEach(function(project, index) {
+    if(projectsArr.length) {
+      convo.say('Lets see .. I have *' + projectsArr.length + '* for you');
+      projectsArr.forEach(function(project, index) {
         var count = index + 1;
         convo.say("#" + count + ': ' + project.title);
       });
