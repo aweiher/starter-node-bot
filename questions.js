@@ -1,6 +1,6 @@
 
 var askStart = function( response, convo) {
-    convo.ask('Are you interested in some amazing project opportunities?', [
+    convo.ask('Are you interested in some amazing project opportunities?', /*[
         {
             pattern: bot.utterances.yes,
             callback: function(response,convo) {
@@ -25,8 +25,15 @@ var askStart = function( response, convo) {
                 convo.next();
             }
         }
-    ]);
-}
+    ]*/
+
+        function(response, convo) {
+            convo.say("Awesome.");
+            convo.next();
+        }
+
+    );
+};
 
 var askSkills = function( response, convo) {
     convo.ask('Which of the following skills do you have? (*backend*, *frontend*, *api*)', [
