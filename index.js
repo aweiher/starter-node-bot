@@ -1,4 +1,7 @@
-var Botkit = require('botkit')
+var Botkit = require('botkit');
+var request = require('request');
+
+var users = require('./users.json');
 
 // Expect a SLACK_TOKEN environment variable
 //var slackToken = process.env.SLACK_TOKEN
@@ -6,6 +9,13 @@ var Botkit = require('botkit')
 //  console.error('SLACK_TOKEN is required!')
 //  process.exit(1)
 //}
+
+var request = require('request');
+request('http://www.google.com', function (error, response, body) {
+  if (!error && response.statusCode == 200) {
+    console.log(body) // Show the HTML for the Google homepage.
+  }
+})
 
 var controller = Botkit.slackbot()
 
@@ -79,6 +89,34 @@ controller.hears(['attachment'], ['direct_message', 'direct_mention'], function 
   }, function (err, resp) {
     console.log(err, resp)
   })
+});
+
+controller.hears(["subscribe (.*)"], ['direct_mention', 'direct_message'], function(bot, message) {
+  var requestedCategory = message;
+  bot.reply(message, "OK - I will send you jobs for "+ requestedCategory +"!");
+});
+
+// Teacher, Bereichsleiterin, Software Engineer,
+controller.hears(["search (.*)"], ['direct_mention', 'direct_message'], function(bot, message) {
+  var match = message.match[1];
+
+  var results = [];
+
+  bot.reply('searching the database ..');
+
+  for(userIdx in users) {
+    var user = users[userIdx];
+
+    if(results.length > 10) {
+      break;
+    }
+
+    if(user.SlackName === match) {
+      results.push(user);
+    }
+  }
+
+  bot.reply('found ' + results.length + ' Results');
 });
 
 
