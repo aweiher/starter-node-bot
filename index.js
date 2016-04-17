@@ -88,6 +88,19 @@ controller.hears(["subscribe (.*)"], ['direct_mention', 'direct_message'], funct
 });
 
 // Teacher, Bereichsleiterin, Software Engineer,
+
+function parseResults(results) {
+  return results.map(function(result) {
+    return {
+      title: result.Name,
+      text: result.Title,
+      image_url: result.PhotoUrls,
+      title_link: result.Permalink,
+      color: '#7CD197'
+    }
+  });
+}
+
 controller.hears(["search (.*)"], ['direct_mention', 'direct_message'], function(bot, message) {
   var match = message.match[1];
 
@@ -108,6 +121,9 @@ controller.hears(["search (.*)"], ['direct_mention', 'direct_message'], function
   }
 
   bot.reply(message, 'found ' + results.length + ' Results');
+  bot.reply(message, {
+    attachments: parseResults(results)
+  });
 });
 
 
