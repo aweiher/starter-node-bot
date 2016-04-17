@@ -49,7 +49,7 @@ exports.init = function (bot, message) {
     }
 
     convo.say('found ' + results.length + ' Results');
-    convo.say({
+    bot.reply(message, {
       attachments: parseResults(results)
     });
   };
