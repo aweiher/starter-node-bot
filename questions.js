@@ -62,6 +62,12 @@ exports.init = function (bot, message) {
         callback: function (response, convo) {
           var profession = response.match[1];
 
+          if(profession === 'developer') {
+            convo.ask('Which Type of developer are you looking for? [*java*, *frontend*, *database*]', function() {
+              convo.next();
+            });
+          }
+
           convo.say('Great - I will search for '+ profession +' !');
           searchProfession(response, convo);
           convo.next();
