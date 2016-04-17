@@ -27,16 +27,16 @@ var bot = require('beepboop-botkit').start(controller);
 controller.on('bot_channel_join', function (bot, message) {
   bot.reply(message, "I'm here!")
 });
+//
+//controller.hears(['hello', 'hi'], ['direct_mention'], function (bot, message) {
+//  bot.reply(message, 'I send you a message.');
+//
+//  var questions = require('./questions.js').init(bot, message);
+//  bot.startPrivateConversation(message, questions.askStart);
+//});
 
-controller.hears(['hello', 'hi'], ['direct_mention'], function (bot, message) {
-  bot.reply(message, 'I send you a message.');
 
-  var questions = require('./questions.js').init(bot, message);
-  bot.startPrivateConversation(message, questions.askStart);
-});
-
-
-controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
+controller.hears(['hello', 'hi'], ['direct_message', 'direct_mention'], function (bot, message) {
 
   var questions = require('./questions.js').init(bot, message);
 
