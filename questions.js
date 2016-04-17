@@ -64,9 +64,7 @@ exports.init = function (bot, message) {
 
           if(profession === 'developer') {
             convo.ask('Which Type of developer are you looking for? [*java*, *frontend*, *database*]', function(response, convo) {
-              convo.say("debug: " + JSON.stringify(response));
-
-              convo.say('Great - I will search for '+ profession +' !');
+              convo.say('Great - I will search for *'+ response.text +' '+ profession +'* !');
 
               convo.next();
             });
