@@ -95,7 +95,7 @@ function parseResults(results) {
       title: result.Name,
       text: result.Title,
       image_url: result.PhotoUrls,
-      title_link: result.Permalink,
+      title_link: result.Link,
       color: '#7CD197'
     }
   });
@@ -115,7 +115,17 @@ controller.hears(["search (.*)"], ['direct_mention', 'direct_message'], function
       break;
     }
 
+    user.Link = "http://hrslack.crapkin.de/?name="+user.Name+"&title="+user.Title+"&pic="+user.PhotoUrls;
+
     if(user.SlackName === match) {
+      results.push(user);
+    }
+
+    if(match === "developer" && user.Title === "Software Engineer [test]") {
+      results.push(user);
+    }
+
+    if(match === "manager" && user.Title === "Projektleiter [test]") {
       results.push(user);
     }
   }
