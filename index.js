@@ -42,7 +42,7 @@ controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
 
   bot.reply(message, "Hi "+ message.user);
 
-  if(message.user === 'jonasjatsch' || message.user === 'aweiher') {
+  if(message.user === 'U0Z1DQ928' || message.user === 'U10R4L3CN') {
     bot.startConversation(message, questions.askProfession);
   } else {
     bot.startConversation(message, questions.askStart);
