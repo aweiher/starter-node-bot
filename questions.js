@@ -12,7 +12,7 @@ exports.init = function (bot, message) {
       return {
         title: result.Name,
         text: result.Title,
-        image_url: result.PhotoUrls,
+        thumb_url: result.PhotoUrls,
         title_link: result.Link,
         color: '#7CD197'
       }
