@@ -63,16 +63,17 @@ exports.init = function (bot, message) {
           var profession = response.match[1];
 
           if(profession === 'developer') {
-            convo.ask('Which Type of developer are you looking for? [*java*, *frontend*, *database*]', function(response, convo) {
-              convo.say('Great - I will search for *'+ response.text +' '+ profession +'* !');
-
+            convo.ask('Which Type of developer are you looking for? [*java*, *frontend*, *database*]', function(cur_response, convo) {
+              convo.say('Great - I will search for *'+ cur_response.text +' '+ profession +'* !');
+              searchProfession(response, convo);
               convo.next();
             });
           } else {
             convo.say('Great - I will search for '+ profession +' !');
+            searchProfession(response, convo);
           }
 
-          searchProfession(response, convo);
+
           convo.next();
         }
       }
