@@ -233,7 +233,7 @@ exports.init = function (bot, message) {
   };
 
   var likeProjects = function(response, convo) {
-    convo.ask(message, 'I heard you like projects? :heart:', [
+    convo.ask('I heard you like projects? :heart:', [
       {
         pattern: bot.utterances.yes,
         callback: function (response, convo) {
