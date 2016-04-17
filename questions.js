@@ -106,7 +106,7 @@ exports.init = function (bot, message) {
   };
 
   var askStart = function (response, convo) {
-    convo.say('Hello <@' + message.user + '>!');
+    //convo.say('Hello <@' + message.user + '>!');
     convo.ask('Are you interested in some amazing project opportunities?', [
         {
           pattern: bot.utterances.yes,
@@ -217,7 +217,6 @@ exports.init = function (bot, message) {
         pattern: bot.utterances.yes,
         callback: function (response, convo) {
           convo.say('Ok - I will inform you!');
-          askSkills(response, convo);
           convo.next();
         }
       },
