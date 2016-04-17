@@ -1,6 +1,4 @@
 var Botkit = require('botkit');
-var request = require('request');
-
 var users = require('./users.json');
 
 // Expect a SLACK_TOKEN environment variable
