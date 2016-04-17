@@ -4,7 +4,71 @@ var projects = {
   api: []
 };
 
+var users = require('./users.json');
+
 exports.init = function (bot, message) {
+  function parseResults(results) {
+    return results.map(function(result) {
+      return {
+        title: result.Name,
+        text: result.Title,
+        image_url: result.PhotoUrls,
+        title_link: result.Link,
+        color: '#7CD197'
+      }
+    });
+  }
+
+  var searchProfession = function(response, convo) {
+    var match = response.match[1];
+
+    var results = [];
+
+    convo.say('searching the database ..');
+
+    for(userIdx in users) {
+      var user = users[userIdx];
+
+      if(results.length > 10) {
+        break;
+      }
+
+      user.Link = "http://hrslack.crapkin.de/?name="+user.Name+"&title="+user.Title+"&pic="+user.PhotoUrls;
+
+      if(user.SlackName === match) {
+        results.push(user);
+      }
+
+      if(match === "developer" && user.Title === "Software Engineer [test]") {
+        results.push(user);
+      }
+
+      if(match === "manager" && user.Title === "Projektleiter [test]") {
+        results.push(user);
+      }
+    }
+
+    convo.say('found ' + results.length + ' Results');
+    convo.say(message, {
+      attachments: parseResults(results)
+    });
+  };
+
+
+  var askProfession = function(response, convo) {
+    convo.ask('Hi  <@' + message.user + '> - what can I do for you?', [
+      {
+        pattern: ".* search for (.*)",
+        callback: function (response, convo) {
+          var profession = response.match[1];
+
+          convo.say('Great - I will search for '+ profession +' !');
+          searchProfession(response, convo);
+          convo.next();
+        }
+      }
+    ]);
+  };
 
   var addProject = function(response, convo) {
     convo.ask("Which category is the project?", function() {

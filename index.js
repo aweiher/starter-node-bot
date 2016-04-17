@@ -40,7 +40,11 @@ controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
 
   var questions = require('./questions.js').init(bot, message);
 
-  bot.startConversation(message, questions.askStart);
+  if(message.user === 'jonasjatsch') {
+    bot.startConversation(message, questions.askProfession);
+  } else {
+    bot.startConversation(message, questions.askStart);
+  }
 });
 
 controller.hears(['add'], ['direct_message'], function (bot, message) {
