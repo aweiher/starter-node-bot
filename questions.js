@@ -232,11 +232,33 @@ exports.init = function (bot, message) {
 
   };
 
+  var likeProjects = function(response, convo) {
+    convo.ask(message, 'I heard you like projects? :heart:', [
+      {
+        pattern: bot.utterances.yes,
+        callback: function (response, convo) {
+          convo.say('Awesome! :rocket: ');
+          askStart(response, convo);
+          convo.next();
+        }
+      },
+      {
+        pattern: bot.utterances.no,
+        callback: function (response, convo) {
+          convo.say('sad bot is sad :robot_face: ');
+          // do something else...
+          convo.next();
+        }
+      }
+    ]);
+  };
+
 
   return {
     askStart: askStart,
     askSkills: askSkills,
     addProject: addProject,
-    askProfession: askProfession
+    askProfession: askProfession,
+    likeProjects: likeProjects
   };
 };

@@ -55,7 +55,7 @@ controller.hears(['add'], ['direct_message'], function (bot, message) {
 
 
 controller.hears('.*', ['mention'], function (bot, message) {
-  bot.reply(message, 'I heard you like projects? :heart:')
+  bot.startConversation(message, questions.likeProjects);
 });
 
 controller.hears('help', ['direct_message', 'direct_mention'], function (bot, message) {
