@@ -207,6 +207,7 @@ exports.init = function (bot, message) {
   return {
     askStart: askStart,
     askSkills: askSkills,
-    addProject: addProject
+    addProject: addProject,
+    askProfession: askProfession
   };
 };
