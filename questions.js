@@ -206,30 +206,30 @@ exports.init = function (bot, message) {
       projectsArr.forEach(function(project, index) {
         var count = index + 1;
         convo.say("#" + count + ': ' + project.title);
-
-        convo.ask('Should I inform you, when I have projects like this?', [
-          {
-            pattern: bot.utterances.yes,
-            callback: function (response, convo) {
-              convo.say('Ok - I will inform you!');
-              askSkills(response, convo);
-              convo.next();
-            }
-          },
-          {
-            pattern: bot.utterances.no,
-            callback: function (response, convo) {
-              convo.say('No Problem - you can always write me if you change your mind.');
-              // do something else...
-              convo.next();
-            }
-          }
-        ]);
       });
     } else {
       convo.say('Oh noes .. I have no projects for you!');
+
     }
 
+    convo.ask('Should I inform you, when I have projects like this?', [
+      {
+        pattern: bot.utterances.yes,
+        callback: function (response, convo) {
+          convo.say('Ok - I will inform you!');
+          askSkills(response, convo);
+          convo.next();
+        }
+      },
+      {
+        pattern: bot.utterances.no,
+        callback: function (response, convo) {
+          convo.say('No Problem - you can always write me if you change your mind.');
+          // do something else...
+          convo.next();
+        }
+      }
+    ]);
   };
 
   var likeProjects = function(response, convo) {
