@@ -55,6 +55,7 @@ controller.hears(['add'], ['direct_message'], function (bot, message) {
 
 
 controller.hears('.*', ['mention'], function (bot, message) {
+  var questions = require('./questions.js').init(bot, message);
   bot.startConversation(message, questions.likeProjects);
 });
 
