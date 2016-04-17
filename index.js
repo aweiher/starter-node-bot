@@ -93,7 +93,7 @@ controller.hears(["search (.*)"], ['direct_mention', 'direct_message'], function
 
   var results = [];
 
-  bot.reply('searching the database ..');
+  bot.reply(message, 'searching the database ..');
 
   for(userIdx in users) {
     var user = users[userIdx];
@@ -107,7 +107,7 @@ controller.hears(["search (.*)"], ['direct_mention', 'direct_message'], function
     }
   }
 
-  bot.reply('found ' + results.length + ' Results');
+  bot.reply(message, 'found ' + results.length + ' Results');
 });
 
 
